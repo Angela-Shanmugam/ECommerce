@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  customers:
+    image: angelashan/ecommerceapicustomers:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80/http"
+
+  orders:
+    image: angelashan/ecommerceapiorders:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80/http"
+    
+  products:
+    image: angelashan/ecommerceapiproducts:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80/http"
+
+  search:
+    image: angelashan/ecommerceapisearch:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Services__Products=http://10.0.0.4:19081/1946356/products
+      - Services__Customers=http://10.0.0.4:19081/1946356/customers
+      - Services__Orders=http://10.0.0.4:19081/1946356/orders
+    ports:
+      - "6004:80"
+
